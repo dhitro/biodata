@@ -14,7 +14,7 @@
           <div class="card-header">
 
             <h4><?= $label ?></h4>
-            <?= $entry = $count > 0 || empty($search) ? "" : "<a class='btn btn-danger btn-lg' href='index.php?r=biodata/create'>  Entry data  </a>" ?>
+            <?= $entry = $count > 0 && empty($search) ? "" : "<a class='btn btn-danger btn-lg' href='index.php?r=biodata/create'>  Entry data  </a>" ?>
             <?= $cari = $level == 1 ? "
             <form><input class='form-control' name='search' type='search' placeholder='Search' aria-label='Search' data-width='350'>
             <small>Cari Berdarsarkan Kata Kunci </small><button class='btn' type='submit'><i class='fas fa-search'></i></button>

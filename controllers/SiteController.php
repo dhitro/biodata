@@ -10,6 +10,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Tusers;
 use kartik\mpdf\Pdf;
 
 class SiteController extends Controller
@@ -158,6 +159,29 @@ class SiteController extends Controller
      *
      * @return string
      */
+
+    public function actionSignup()
+    {
+        $this->layout = 'login';
+        if (Yii::$app->request->post()) {
+            $data       = Yii::$app->request->post();
+            $user = new Tusers();
+            $spl = explode('@', $data['email']);
+
+            $user->username = $spl[0];
+            $user->email = $data['email'];
+            $user->password = md5($data['password']);
+            $user->level = 2;
+
+            $user->save(false);
+            // var_dump($data);
+            // die();
+            return $this->redirect(['site/login']);
+        }
+
+        return $this->render('signup');
+    }
+
     public function actionAbout()
     {
         return $this->render('about');
@@ -166,7 +190,23 @@ class SiteController extends Controller
     public function actionPdf($search)
     {
 
-        $content = $this->renderPartial('print');
+
+        $bio = Biodata::find();
+        if (!empty($search)) {
+            $param =
+                [
+                    'OR',
+                    ['like', 'nama', $search],
+                    ['like', 'alamat', $search],
+                    ['like', 'jkelamin', strtoupper(substr($search, 0, 1))],
+                    ['like', 'pekerjaan', $search],
+                ];
+            $bio = $bio->andFilterWhere($param);
+        }
+        $bio = $bio->all();
+        $content = $this->renderPartial('print', [
+            'model' => $bio,
+        ]);
 
         $pdf = new Pdf([
             'mode' => Pdf::MODE_UTF8,
@@ -174,7 +214,7 @@ class SiteController extends Controller
             'orientation' => Pdf::ORIENT_PORTRAIT,
             'destination' => Pdf::DEST_BROWSER,
             'content' => $content,
-            'options' => ['title' => 'Laporan Harian']
+            'options' => ['title' => 'Laporan ']
 
         ]);
         return $pdf->render();

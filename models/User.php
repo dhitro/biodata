@@ -22,11 +22,10 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     {
         // return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
         $tuser = Tusers::find()->where(["id" => $id])->one();
-        if(!$tuser){
+        if (!$tuser) {
             return null;
         }
         return new static($tuser);
-
     }
 
     /**
@@ -35,11 +34,10 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     public static function findIdentityByAccessToken($token, $type = null)
     {
         $tuser = Tusers::find()->where(["accessToken" => $token])->one();
-        if(!$tuser){
+        if (!$tuser) {
             return null;
         }
         return new static($tuser);
-
     }
 
     /**
@@ -51,14 +49,13 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     public static function findByUsername($username)
     {
         // $tuser = Tusers::find()->where(["username" => $username])->orWhere(["email" => $username])->one();
-        $tuser = Tusers::find()->where(["username" => $username])->one();
+        $tuser = Tusers::find()->where(["username" => $username])->orWhere(["email" => $username])->one();
 
-        if(!$tuser){
+        if (!$tuser) {
             return null;
         }
 
         return new static($tuser);
-
     }
 
     /**
@@ -95,5 +92,4 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     {
         return $this->password === md5($password);
     }
-
 }

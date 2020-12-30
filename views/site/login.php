@@ -28,17 +28,17 @@ use yii\bootstrap\ActiveForm;
                 <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
                 <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'class' => 'form-control', 'placeholder' => 'Username'])->label('') ?>
                 <?= $form->field($model, 'password')->passwordInput(['class' => 'form-control', 'placeholder' => 'Password'])->label('') ?>
-                <?= $form->field($model, 'captcha')->widget(\yii\captcha\Captcha::class, []) ?> 
+                <?= $form->field($model, 'captcha')->widget(\yii\captcha\Captcha::class, []) ?>
 
                 <?= Html::submitButton('Login', ['class' => 'btn btn-primary btn-block', 'name' => 'login-button']) ?>
                 <?php ActiveForm::end(); ?>
                 <br />
 
                 <div class="mt-5 text-center">
-                    Belum Punya Akun? <a href="auth-register.html">Buat Baru</a>
+                    Belum Punya Akun? <a href="index.php?r=site/signup">Buat Baru</a>
                 </div>
-                
-                
+
+
             </div>
         </div>
         <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="assets/stisla/img/unsplash/login-bg.jpg">

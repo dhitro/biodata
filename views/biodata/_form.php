@@ -57,7 +57,7 @@ $sts = ['LAJANG' => 'LAJANG', 'KAWIN' => 'KAWIN', 'CERAI' => 'CERAI'];
                     <label for="jkelamin">Status Pernikahan</label>
                     <?= $form->field($model, 'statuskawin')->dropDownList($sts, ['prompt' => 'Pilih Status', 'style' => ' height: 50px;'])->label(false) ?>
                 </div>
-
+                <?= $form->field($model, 'pekerjaan')->textInput(['maxlength' => true])->label("Pekerjaan") ?>
                 <div class="form-group">
                     <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
                 </div>
