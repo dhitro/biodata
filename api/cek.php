@@ -6,3 +6,7 @@ if (is_dir($file)) {
 } else {
     echo ("$file is not a directory");
 }
+
+echo __FILE__;
+echo dirname(__FILE__);
+echo __DIR__;
