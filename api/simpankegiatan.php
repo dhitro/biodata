@@ -32,13 +32,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         for ($i = 0; $i < count($_FILES['image']['name']); $i++) {
             // foreach ($_FILES["image"]["tmp_name"] as $key => $tmp_name) {
             $image = date('dmYHis') . str_replace(" ", "", basename($_FILES['image']['name'][$i]));
+            // $path = dirname(__FILE__) . "/upload/" . $image;
             $path = dirname(__FILE__) . "/upload/" . $image;
             $ext = explode('.', basename($_FILES['image']['name'][$i])); //explode file name from dot(.) 
             $file_extension = end($ext); //store extensions in the variable
 
             if (!file_exists("upload/" . $image)) {
                 // move_uploaded_file($file_tmp=$_FILES["files"]["tmp_name"][$i],"photo_gallery/".$txtGalleryName."/".$file_name);
-                $apt = move_uploaded_file($_FILES['image']['tmp_name'][$i], $path);
+                $apt = move_uploaded_file($_FILES['image']['tmp_name'][$i], "upload/" . $image);
                 if ($apt) {
                     $sql_file = "INSERT INTO file VALUE(NULL,$last_id,'$image','$file_extension',1)";
                     if (mysqli_query($con, $sql_file)) {
