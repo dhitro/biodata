@@ -23,11 +23,14 @@ while ($a = mysqli_fetch_array($run)) {
     $key['alamat'] = $a['alamat'];
     $key['kondisi'] = $a['kondisi'];
     $key['survei'] = $a['survei'];
+    $key['kategori'] = $a['kategori'];
+    $key['isi_kategori'] = $a['isi_kategori'];
     $key['keterangan'] = $a['keterangan'];
     $key['id_unit'] = $a['id_unit'];
     $key['id_skpd'] = $a['id_skpd'];
     $key['stat_verif'] = $a['stat_verif'];
     $key['stat_survey'] = $a['stat_survey'];
+    $key['stat_kirim'] = $a['stat_kirim'];
     array_push($respon, $key);
 }
 
