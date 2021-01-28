@@ -15,14 +15,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $alamat = $_POST['alamat'];
     $kondisi = $_POST['kondisi'];
     $survei = 0;
+    $kategori = $_POST['kategori'];
+    $isi_kategori = $_POST['isi_kategori'];
     $keterangan = $_POST['keterangan'];
-    $id_unit = $_POST['id_unit'];
     $id_skpd = $_POST['id_skpd'];
+    $id_unit = $_POST['id_unit'];
     $stat_verif = 0;
     $stat_survey = 0;
+    $stat_kirim = 0;
     // var_dump($_FILES['image']['name']);
 
-    $sql = "INSERT INTO kegiatan VALUE(NULL,'$kegiatan','$uraian','$jenis','$permasalahan',$volume,'$satuan',$long,$lat,'$alamat','$kondisi',NULL,'$keterangan',$id_unit,$id_skpd,$stat_verif,$stat_survey)";
+    $sql = "INSERT INTO kegiatan VALUE(NULL,'$kegiatan','$uraian','$jenis','$permasalahan',$volume,'$satuan',$long,$lat,'$alamat','$kondisi','$survei','$kategori','$isi_kategori','$keterangan',$id_unit,$id_skpd,$stat_verif,$stat_survey,$stat_kirim)";
 
     // $res = mysqli_fetch_array($run);
 
