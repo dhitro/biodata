@@ -34,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         for ($i = 0; $i < count($_FILES['image']['name']); $i++) {
             // foreach ($_FILES["image"]["tmp_name"] as $key => $tmp_name) {
             $image = date('dmYHis') . str_replace(" ", "", basename($_FILES['image']['name'][$i]));
-            // $path = dirname(__FILE__) . "/upload/" . $image;
             $path = __DIR__ . "/upload/" . $image;
             $ext = explode('.', basename($_FILES['image']['name'][$i])); //explode file name from dot(.) 
             $file_extension = end($ext); //store extensions in the variable
