@@ -22,17 +22,24 @@ $row = mysqli_fetch_assoc($run);
 $total_verif = $row['total_verif'];
 $key['total_verif'] = $total_verif;
 
-$sql = "SELECT COUNT(kegiatan) as total_belumverif FROM kegiatan where stat_verif = '0' and id_unit = '$id_unit' and id_skpd='$id_skpd'";
+$sql = "SELECT COUNT(kegiatan) as total_belumverif FROM kegiatan where stat_verif = '0' and stat_kirim = '1' and id_unit = '$id_unit' and id_skpd='$id_skpd'";
 $run = mysqli_query($con, $sql);
 $row = mysqli_fetch_assoc($run);
 $total_belumverif = $row['total_belumverif'];
 $key['total_belumverif'] = $total_belumverif;
 
-$sql = "SELECT COUNT(kegiatan) as total_verif FROM kegiatan where stat_verif = '1' and id_unit = '$id_unit' and id_skpd='$id_skpd'";
+$sql = "SELECT COUNT(kegiatan) as total_verif FROM kegiatan where stat_verif = '1' and stat_kirim = '1' and id_unit = '$id_unit' and id_skpd='$id_skpd'";
 $run = mysqli_query($con, $sql);
 $row = mysqli_fetch_assoc($run);
 $total_verif = $row['total_verif'];
 $key['total_verif'] = $total_verif;
+
+$sql = "SELECT COUNT(kegiatan) as total_belumkirim FROM kegiatan where stat_kirim = '0' and id_unit = '$id_unit' and id_skpd='$id_skpd'";
+$run = mysqli_query($con, $sql);
+$row = mysqli_fetch_assoc($run);
+$total_belumkirim = $row['total_belumkirim'];
+$key['total_belumkirim'] = $total_belumkirim;
+
 
 $sql = "SELECT COUNT(kegiatan) as total_survei FROM kegiatan where stat_survey = '1' and id_unit = '$id_unit' and id_skpd='$id_skpd'";
 $run = mysqli_query($con, $sql);
